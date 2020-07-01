@@ -140,7 +140,7 @@ class ProjectsController < ApplicationController
       average_score_hash[student] = avg
     end
     average_score_hash = average_score_hash.sort_by{|k, v| v}.to_h
-    puts average_score_hash
+    #puts average_score_hash
     #puts student_mean_scores.join(' ')
     print_student_scores(student_scores_hash)
     redirect_to section_projects_path

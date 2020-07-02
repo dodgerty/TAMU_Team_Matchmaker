@@ -143,6 +143,23 @@ class ProjectsController < ApplicationController
     #puts average_score_hash
     #puts student_mean_scores.join(' ')
     print_student_scores(student_scores_hash)
+
+    assignment_hash = {}
+    projects.each do |project|
+      assignment_hash[project.id] = {}
+    end
+
+    average_score_hash.each do |student_id|
+      student_scores_hash.each do |student|
+        if(student[0] == student_id[0])
+          score_hash = student[1]
+          assignment = score_hash.max_by{|k,v| v}
+          assignment_hash[assignment[0]].merge!({student[0] => assignment[1]})
+        end
+      end
+    end
+
+    print_assignment_hash(assignment_hash)
     redirect_to section_projects_path
 
   end
@@ -160,8 +177,14 @@ class ProjectsController < ApplicationController
     
     def print_student_scores(hash)
       hash.each do |student,project_scores|
-        puts "Student: " + student.to_s
-        puts project_scores
+        puts "Student: " + student.to_s + " " + project_scores.to_s
       end
     end
+
+    def print_assignment_hash(hash)
+      hash.each do |project,students|
+        puts "Project: " + project.to_s + " " + students.to_s
+    end
+
+  end
 end

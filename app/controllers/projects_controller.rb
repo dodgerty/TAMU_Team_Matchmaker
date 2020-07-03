@@ -158,8 +158,28 @@ class ProjectsController < ApplicationController
         end
       end
     end
+    total_score = calculate_total_score(assignment_hash)
+
+
 
     print_assignment_hash(assignment_hash)
+    puts "Total score: " + total_score.to_s
+
+    puts "\n--------------------------------------------------------------------------------\n"
+
+    
+    assignment_hash.each do |project_id,student_assignments|
+      project = Project.find(project_id)
+      if(student_assignments.size < project.min_group_size)
+        
+      end
+    end
+    assignment_hash = swap_students(17,14,student_scores_hash,assignment_hash)
+    total_score = calculate_total_score(assignment_hash)
+
+    print_assignment_hash(assignment_hash)
+    puts "Total score: " + total_score.to_s
+
     redirect_to section_projects_path
 
   end
@@ -183,8 +203,54 @@ class ProjectsController < ApplicationController
 
     def print_assignment_hash(hash)
       hash.each do |project,students|
-        puts "Project: " + project.to_s + " " + students.to_s
+        puts "Project: " + project.to_s + " " + students.to_s + " " + calculate_project_score(students).to_s
+      end
+    end
+    
+    def calculate_project_score(hash)
+      if(hash.empty?)
+        return 0
+      else
+        return hash.values.sum
+      end
+    end
+    
+    def calculate_total_score(hash)
+      score = 0
+      hash.each do |project,students|
+        p = Project.find(project)
+        if(students.size < p.min_group_size || students.size > p.max_group_size)
+          score += 0
+        else
+          score += calculate_project_score(students)
+        end
+      end
+      return score
     end
 
-  end
+    def swap_students(student1, student2, scores_hash, assignment_hash)
+      project1_id = 0
+      project2_id = 0
+      assignment_hash.each do |key,value|
+        if(value.key?(student1))
+          project1_id = key
+        elsif(value.key?(student2))
+          project2_id = key
+        end
+      end
+      puts "Student: " + student1.to_s + " From: " + project1_id.to_s
+      puts "Student: " + student2.to_s + " From: " + project2_id.to_s
+      new_student1_score = scores_hash[student1][project2_id]
+      new_student2_score = scores_hash[student2][project1_id]
+      if(new_student1_score == nil || new_student2_score == nil)
+        return assignment_hash
+      end
+      assignment_hash[project1_id].delete(student1)
+      assignment_hash[project1_id].merge!({student2 => new_student2_score})
+      assignment_hash[project2_id].delete(student2)
+      assignment_hash[project2_id].merge!({student1 => new_student1_score})
+      return assignment_hash
+    end
+
 end
+

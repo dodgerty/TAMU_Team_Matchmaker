@@ -5,6 +5,9 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @sections = Section.all
+    if(:tutorial == true)
+      puts "TTTTTTTT"
+    end
   end
 
   # GET /sections/1
@@ -69,6 +72,6 @@ class SectionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def section_params
-      params.require(:section).permit(:course, :section)
+      params.require(:section).permit(:course, :section, :tutorial)
     end
 end

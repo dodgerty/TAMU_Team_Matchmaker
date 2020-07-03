@@ -1,18 +1,24 @@
-%h1 Login
+%h1.login_header
+    LOGIN
 %br
 %br
 
-    %strong Username
+    %div.username_header
+        Username
     %br
-    =text_area :username, 'Username', :cols => 15, :rows => 1
+    =text_area :username, 'Username', :cols => 15, :rows => 1, class: 'username_field'
     %br
-    %strong Password
+    %div.password_header
+        Password
     %br
-    =text_area :password, 'Password', :cols => 15, :rows => 1
+    =text_area :password, 'Password', :cols => 15, :rows => 1, class: 'password_field'
     %br
 
-= link_to 'LOGIN', sections_path, class: 'Login_Button'
+= link_to 'LOGIN', sections_path, class: 'Login_Button', :id => "login_button"
 &nbsp
-|
 &nbsp
-= link_to 'Create Account', new_user_path
+= link_to 'Create Account', new_user_path, class: 'Create_Account_Button'
+:javascript
+    $(document).ready(function() {
+        
+    });

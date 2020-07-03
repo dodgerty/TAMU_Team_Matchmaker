@@ -1,3 +1,75 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.Login_Button{
+  align-content: center;
+  background-color: #cccccc; /* Green */
+  border: none;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 25px;
+}
+.Create_Account_Button{
+    align-content: center;
+    background-color: #cccccc; /* Green */
+    border: none;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 25px;
+}
+.username_field{
+    align-content: center;
+    margin: auto;
+    position: absolute;
+    top: 30%;
+    left: 42%;
+    height: 40px;
+    font-size: 25px;
+    padding: 10px;
+}
+.password_field{
+    align-content: center;
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 42%;
+    height: 40px;
+    font-size: 25px;
+    padding: 10px;
+}
+.username_header{
+    font-weight: bolder;
+    position: absolute;
+    top: 27%;
+    left: 42%;
+}
+.password_header{
+    font-weight: bolder;
+    position: absolute;
+    top: 37%;
+    left: 42%;
+}
+.login_header{
+    font-weight: bolder;
+    color: white;
+    position: absolute;
+    top: 5%;
+    left: 45%;
+}

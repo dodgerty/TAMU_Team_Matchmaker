@@ -6,11 +6,11 @@
       %th Course - Section
 
   %tbody
-    - @sections.each do |section|
+    - @sections.each do |s|
       %tr
-        %td= link_to section.course + " - " + section.section, section_projects_url(section.id)
-        %td= link_to 'Edit', edit_section_path(section)
-        %td= link_to 'Destroy', section, method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'CSCE 111 - 500', section_projects_path(section_id: 1)
+        %td= link_to 'Edit', edit_section_path(s)
+        %td= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

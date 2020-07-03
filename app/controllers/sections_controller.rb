@@ -5,8 +5,8 @@ class SectionsController < ApplicationController
   # GET /sections.json
   def index
     @sections = Section.all
-    if(:tutorial == true)
-      puts "TTTTTTTT"
+    if(params[:tutorial] == 'true')
+      @tutorial = true
     end
   end
 

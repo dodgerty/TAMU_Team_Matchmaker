@@ -18,7 +18,7 @@ textarea {
 }
 
 label {
-  font-size: 18px;
+  font-size: 25px;
 }
 
 .poop {
@@ -26,10 +26,26 @@ label {
     margin: 0;
     background-color: rgb(80,0,0);
     width: 100%;
-    padding-bottom: 10px;
+    padding-bottom: 70px;
     font-size: 100%;
+    justify-content: left;
+    vertical-align: center;
+    position: relative;
 }
 
 .pad{
   padding: 10px;
+}
+
+.title{
+  font-size: 45px;
+  color: white;
+  color-adjust: white;
+  position: absolute;
+  top: 35%;
+  font-style: italic;
+}
+.title:hover{
+  text-decoration: none;
+  background-color: transparent;
 }

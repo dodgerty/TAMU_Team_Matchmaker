@@ -4,27 +4,33 @@
   %table
     %thead
       %tr
-        %th Course - Section
+        %th.section-header Course - Section
     %tbody
       - @sections.each do |s|
         %tr
-          %td= link_to 'CSCE 101 - 500', section_projects_path(section_id: 1)
-          %td= link_to 'Edit', edit_section_path(s)
-          %td= link_to 'Destroy', s, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= link_to 'CSCE 101 - 500', section_projects_path(section_id: 1), class: 'section'
+          %td= link_to 'Edit', edit_section_path(s), class: 'edit-operation'
+          %td= link_to 'Delete', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-operation'
   %br
-  = link_to 'New Section', new_section_path
+  = link_to 'New Section', new_section_path, class: 'button', :style=>'color:#FFFFFF;'
   = image_tag 'https://brandguide.tamu.edu/assets/img/logos/tam-logo.png', :size => '150x120', :class => 'logo'
+  
   .bg-modal
     .modal-content
       .modal-header
         Welcome to our Team Matchmaker! 
       .modal-text
         The goal of this application is to help you create teams for your academic projects using our matching algorithm
-      = button_tag 'Show Me How it Works', class: 'button', id: 'button'    
+      = button_tag 'Show Me How it Works', class: 'button', id: 'button'
+  .click-sections
+    Click  
 
 :javascript
   $(function(){
-    $('#button').click(function(){
-      $('.bg-modal').hide()
-    });
+    if("#{@tutorial}" == 'true'){
+      $('.bg-modal').css('opacity','1.0')
+      $('#button').click(function(){
+          $('.bg-modal').hide()
+      });
+    }
   });

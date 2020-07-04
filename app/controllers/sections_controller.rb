@@ -6,7 +6,7 @@ class SectionsController < ApplicationController
   def index
     @sections = Section.all
     if(params[:tutorial] == 'true')
-      @tutorial = true
+      @tutorial = 'true'
     end
   end
 

@@ -2,4 +2,7 @@
 
 = render 'form'
 
-= link_to 'Back', sections_path
+- if(params[:tutorial] == 'true')
+    = link_to 'Back', sections_path(:tutorial => 'true')
+- else
+    = link_to 'Back', sections_path()

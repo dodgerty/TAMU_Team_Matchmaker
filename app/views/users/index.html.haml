@@ -14,7 +14,7 @@
     =text_area :password, 'Password', :cols => 15, :rows => 1, class: 'password_field'
     %br
 
-= link_to 'LOGIN', sections_path, class: 'Login_Button', :id => "login_button"
+= link_to 'LOGIN', sections_path(:tutorial => 'false'), class: 'Login_Button', :id => "login_button"
 &nbsp
 &nbsp
 = link_to 'Create Account', new_user_path, class: 'Create_Account_Button'

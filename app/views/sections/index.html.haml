@@ -1,36 +1,49 @@
 %h1.header Sections
 
 .sections
-  %table
+  %table#sections-table
     %thead
-      %tr
-        %th.section-header Course - Section
+      %th#sections-table-header 
+        Course - Section
     %tbody
       - @sections.each do |s|
         %tr
-          %td= link_to 'CSCE 101 - 500', section_projects_path(section_id: 1), class: 'section'
+          %td
+            - if ("#{params[:tutorial => true]}")
+              = link_to 'CSCE 101 - 500', section_projects_path(section_id: 1, :tutorial => 'true'), class: 'section'
+            - else
+              = link_to 'CSCE 101 - 500', section_projects_path(section_id: 1), class: 'section'
           %td= link_to 'Edit', edit_section_path(s), class: 'edit-operation'
           %td= link_to 'Delete', s, method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-operation'
   %br
-  = link_to 'New Section', new_section_path, class: 'button', :style=>'color:#FFFFFF;'
+  = link_to 'New Section', new_section_path(:tutorial => true), class: 'button', :style=>'color:#FFFFFF;', id: 'new-section-button'
   = image_tag 'https://brandguide.tamu.edu/assets/img/logos/tam-logo.png', :size => '150x120', :class => 'logo'
-  
   .bg-modal
     .modal-content
-      .modal-header
+      %p#modal-header
         Welcome to our Team Matchmaker! 
-      .modal-text
+      %p#modal-text
         The goal of this application is to help you create teams for your academic projects using our matching algorithm
-      = button_tag 'Show Me How it Works', class: 'button', id: 'button'
-  .click-sections
-    Click  
+      = button_tag 'Show Me How it Works', class: 'button', id: 'button' 
 
 :javascript
   $(function(){
-    if("#{@tutorial}" == 'true'){
+    if("#{params[:tutorial]}" == 'true'){
       $('.bg-modal').css('opacity','1.0')
       $('#button').click(function(){
-          $('.bg-modal').hide()
+          $('.bg-modal').fadeOut(100)
+          setTimeout(function(){
+            $('#sections-table').addClass("sections-table-outline");
+            $('#sections-table').after("<p class = 'tutorial-message'>Here is a list of your current Sections. Click on the section to view its projects</p>")
+            setTimeout(function(){
+              $('#new-section-button').css({"outline": "5px solid red", "outline-offset": "5px"})
+              $('#new-section-button').after("<p class = 'new-button-tutorial-message'> Click here to create a new project </p>")
+            },1000)
+          },1500)
+
       });
+    }
+    else{
+      //do nothing
     }
   });

@@ -28,7 +28,7 @@
 
 :javascript
   $(function(){
-    if("#{params[:tutorial]}" == 'true'){
+    if("#{params[:tutorial]}" == 'true' && "#{params[:tutorial]}" != 'complete'){
       $('.bg-modal').css('opacity','1.0')
       $('#button').click(function(){
           $('.bg-modal').fadeOut(100)
@@ -37,7 +37,7 @@
             $('#sections-table').after("<p class = 'tutorial-message'>Here is a list of your current Sections. Click on the section to view its projects</p>")
             setTimeout(function(){
               $('#new-section-button').css({"outline": "5px solid red", "outline-offset": "5px"})
-              $('#new-section-button').after("<p class = 'new-button-tutorial-message'> Click here to create a new project </p>")
+              $('#new-section-button').after("<p class = 'new-button-tutorial-message'> Create a new Section here </p>")
             },1000)
           },1500)
 

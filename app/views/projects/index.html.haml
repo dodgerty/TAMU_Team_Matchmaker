@@ -22,25 +22,19 @@
         %td= project.hardware
         %td= project.industry_sponsored
         %td= project.client
-        %td= link_to 'Show', section_project_path(:id => project.id)
-        %td= link_to 'Edit', edit_section_project_path(:id => project.id)
-        %td= link_to 'Destroy', section_project_path(:id => project.id), method: :delete, data: { confirm: 'Are you sure?' }
+        %td= link_to 'Show', section_project_path(:id => project.id), class: 'edit-operation'
+        %td= link_to 'Edit', edit_section_project_path(:id => project.id), class: 'edit-operation'
+        %td= link_to 'Destroy', section_project_path(:id => project.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'edit-operation'
 
 %br
-
-= link_to 'Add New Project', new_section_project_path
-
+= link_to 'Add New Project', new_section_project_path, class: 'button', :style=>'color:#FFFFFF;'
 %br
 %br
-
 Student Form:
-= link_to 'Get URL', '', data: { confirm: 'Link for email: ' + request.base_url + url_for(new_section_student_path) }
-
+= link_to 'Get URL', '', data: { confirm: 'Link for email: ' + request.base_url + url_for(new_section_student_path) }, class: 'button', :style=>'color:#FFFFFF;'
 %br
 %br
-
-= link_to 'Match Students', match_section_projects_path
-
+= link_to 'Match Students', match_section_projects_path, class: 'button', :style=>'color:#FFFFFF;', id: 'match-button'
 %br
 %br
 -if @manual_assignment.length() > 0
@@ -49,9 +43,7 @@ Student Form:
   - @manual_assignment.each do |s|
     = s.first_name + ' ' + s.last_name
     %br
-  
 %br
 %br
-
-= link_to 'Back', sections_path
+= link_to 'Back', sections_path, class: 'button', :style=>'color:#FFFFFF;'
 = image_tag 'https://brandguide.tamu.edu/assets/img/logos/tam-logo.png', :size => '150x120', :class => 'logo'
